@@ -4,25 +4,22 @@ public class GiftTicket extends Ticket {
 
     private final static String TYPE = "Bilet prezentowy";
 
-    GiftTicket(String eventName, Address address,  double basicPrice, double discount) {
+    GiftTicket() {
+    }
+
+    GiftTicket(String eventName, Address address, double basicPrice, double discount) {
         super(eventName, address, basicPrice, discount);
     }
 
-    @Override
-    Ticket createTicket() {
-        return super.createTicket();
+    public static Ticket create() {
+        GiftTicket giftTicket = new GiftTicket();
+        giftTicket.createTicket();
+        return giftTicket;
     }
 
     @Override
-    double finalPrice() {
-        super.finalPrice();
-        return addExtraCostsToPrice();
-    }
-
-    private double addExtraCostsToPrice() {
-        double additional5percent = 0.05 * getFinalPrice();
-        double firstCost = setFinalPrice(getFinalPrice() + 5);
-        return setFinalPrice(firstCost + additional5percent);
+    double calculateFinalPrice() {
+        return super.calculateFinalPrice() + 5 + (super.calculateFinalPrice() * 0.05);
     }
 
     @Override

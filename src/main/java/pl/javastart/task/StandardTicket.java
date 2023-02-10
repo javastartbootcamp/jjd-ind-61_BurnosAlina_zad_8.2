@@ -11,19 +11,15 @@ public class StandardTicket extends Ticket {
         super(eventName, address, basicPrice, discount);
     }
 
-    @Override
-    Ticket createTicket() {
-        return super.createTicket();
+    public static Ticket create() {
+        StandardTicket standardTicket = new StandardTicket();
+        standardTicket.createTicket();
+        return standardTicket;
     }
 
     @Override
-    double finalPrice() {
-        super.finalPrice();
-        return addExtraCostsToFinalPrice();
-    }
-
-    private double addExtraCostsToFinalPrice() {
-        return setFinalPrice(getFinalPrice() + 5);
+    double calculateFinalPrice() {
+        return super.calculateFinalPrice() + 5;
     }
 
     @Override

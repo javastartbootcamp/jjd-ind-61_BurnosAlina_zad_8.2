@@ -10,7 +10,6 @@ public class Ticket {
     private double basicPrice;
     private double discount;
     private static int uniqueNumber;
-    private double finalPrice;
 
     Ticket() {
     }
@@ -43,22 +42,13 @@ public class Ticket {
         } while (discount < 0 || discount > 1);
     }
 
-    double finalPrice() {
-        return finalPrice = basicPrice - basicPrice * discount;
+    double calculateFinalPrice() {
+        return basicPrice - (basicPrice * discount);
     }
 
     void printInfo() {
         System.out.println(eventName + "\n" + address.getCity() + ", " + address.getStreet() + ", " +
                 address.getBuildingNumber() + "\nCena podstawowa: " + basicPrice + "zł\nZniżka: " +
-                discount + "\nCena ostateczna: " + finalPrice + "zł\nNumer biletu: " + uniqueNumber);
-    }
-
-    double getFinalPrice() {
-        return finalPrice;
-    }
-
-    double setFinalPrice(double finalPrice) {
-        this.finalPrice = finalPrice;
-        return finalPrice;
+                discount + "\nCena ostateczna: " + calculateFinalPrice() + "zł\nNumer biletu: " + uniqueNumber);
     }
 }
